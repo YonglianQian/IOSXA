@@ -1,6 +1,8 @@
 ﻿using Foundation;
+using Microsoft.AppCenter.Analytics;
 using Phoneword;
 using System;
+using System.Collections.Generic;
 using UIKit;
 
 namespace IOSXA
@@ -42,17 +44,21 @@ namespace IOSXA
             };
             //callbutton
             CallButton.TouchUpInside += (object sender, EventArgs e) => {
-                var url = new NSUrl("tel:" + translatedNumber);
+                //var url = new NSUrl("tel:" + translatedNumber);
+                //if (!UIApplication.SharedApplication.OpenUrl(url))
+                //{
+                //    var alert = UIAlertController.Create("Not supported", "Scheme 'tel:' is not supported on this device", UIAlertControllerStyle.Alert);
+                //    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+                //    PresentViewController(alert, true, null);
+                //}
 
-                // Use URL handler with tel: prefix to invoke Apple's Phone app,
-                // otherwise show an alert dialog
-
-                if (!UIApplication.SharedApplication.OpenUrl(url))
+                Analytics.TrackEvent("Custom event", new Dictionary<string, string>()
                 {
-                    var alert = UIAlertController.Create("Not supported", "Scheme 'tel:' is not supported on this device", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
-                    PresentViewController(alert, true, null);
-                }
+                    {"ID","2"},
+                    {"Name","Apple" }
+
+                });
+
             };
         }
 
