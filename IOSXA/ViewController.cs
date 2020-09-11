@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Phoneword;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,7 @@ namespace IOSXA
             };
             //callbutton
             CallButton.TouchUpInside += (object sender, EventArgs e) => {
+
                 //var url = new NSUrl("tel:" + translatedNumber);
                 //if (!UIApplication.SharedApplication.OpenUrl(url))
                 //{
@@ -51,15 +53,11 @@ namespace IOSXA
                 //    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 //    PresentViewController(alert, true, null);
                 //}
-
-                Analytics.TrackEvent("Custom event", new Dictionary<string, string>()
-                {
-                    {"ID","2"},
-                    {"Name","Apple" }
-
-                });
+                
+                Crashes.GenerateTestCrash();
 
             };
+          
         }
 
         public override void DidReceiveMemoryWarning ()

@@ -2,6 +2,7 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using System.Text;
 using UIKit;
 
 namespace IOSXA
@@ -17,6 +18,16 @@ namespace IOSXA
         [Export ("application:didFinishLaunchingWithOptions:")]
         public bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
+            Crashes.GetErrorAttachments = (ErrorReport report) =>
+            {
+                // Your code goes here.
+                return new ErrorAttachmentLog[]
+                {
+        ErrorAttachmentLog.AttachmentWithText("Hello world!", "hello.txt"),
+        ErrorAttachmentLog.AttachmentWithBinary(Encoding.UTF8.GetBytes("Fake image"), "fake_image.jpeg", "image/jpeg")
+                };
+            };
+
             AppCenter.Start("e28a0f91-00ef-490a-bb8d-8165cbc55115",
                    typeof(Analytics), typeof(Crashes));
 
