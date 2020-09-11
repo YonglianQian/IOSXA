@@ -12,13 +12,13 @@ namespace IOSXA
     {
         public ViewController (IntPtr handle) : base (handle)
         {
+
         }
 
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
             // Perform any additional setup after loading the view, typically from a nib.
-
 
             //translatebutton
             string translatedNumber = "";
@@ -53,7 +53,9 @@ namespace IOSXA
                 //    alert.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
                 //    PresentViewController(alert, true, null);
                 //}
-                
+
+                Analytics.TrackEvent("Button is clicked at " + DateTime.Now.ToLongTimeString());
+
                 Crashes.GenerateTestCrash();
 
             };

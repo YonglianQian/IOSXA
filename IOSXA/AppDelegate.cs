@@ -2,6 +2,7 @@
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using System;
 using System.Text;
 using UIKit;
 
@@ -20,11 +21,12 @@ namespace IOSXA
         {
             Crashes.GetErrorAttachments = (ErrorReport report) =>
             {
+                var result = DateTime.Now.ToLongTimeString();
                 // Your code goes here.
                 return new ErrorAttachmentLog[]
                 {
-        ErrorAttachmentLog.AttachmentWithText("Hello world!", "hello.txt"),
-        ErrorAttachmentLog.AttachmentWithBinary(Encoding.UTF8.GetBytes("Fake image"), "fake_image.jpeg", "image/jpeg")
+        ErrorAttachmentLog.AttachmentWithText("Hello world! at "+result, "hello.txt"),
+        
                 };
             };
 
